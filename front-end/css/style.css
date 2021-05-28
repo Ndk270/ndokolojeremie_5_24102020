@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'roboto', sans-serif;
+}
+body{
+    width: 100%;
+    margin: 0 auto;
+    color: black;
+    font-family: 'Roboto Slab', serif;
+}
+nav .container-navbar__logo{
+  height: 80px;
+}
+main{
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main #cc{
+  margin: 2rem;
+}
+.card img{
+  height: 250px;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
