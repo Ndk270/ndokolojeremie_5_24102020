@@ -25,8 +25,8 @@ main #cc{
   height: 250px;  
 }
 
-.produit__img{
-  height: 250px;  
+#produit_img{
+  height: 30vh;  
 
 }
 

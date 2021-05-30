@@ -32,55 +32,40 @@
         </div>
     </nav>
 
-    <main>
+    <main class="main-container">
         <h1 class="title col-12 text-center">Détail de l'appareil</h1>
         <div class="container mt-5">
             <article class="produit">
 
-                <div class="row g-5 my-3">
+                <div class="row g-5 my-3 justify-content-center">
 
                     <div>
                         <a href="index.html" class="btn">Retour vers le store</a>
                     </div>
 
-                    <!--CART SECTION-->
-                    <div class="col-md-5 col-lg-4 order-md-last">
-                        <ul id="cart" class="list-group mb-3">
-                        </ul>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between total">
-                                <p>Prix à l'unité : <span class="produit__price"></span></p>
-                            </li>
-                        </ul>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between total">
-                                <p>Prix total : <span class="produit__total">0</span> €</p>
 
-                            </li>
-                        </ul>
-
-
-                    </div>
-                    <!--BILLING SECTION-->
-                    <div class="col-md-7 col-lg-8">
-                        <img class="produit__img" src="" alt="appareil photo">
+                    <div class="col-md-7 col-lg-8" id="test">
+                        <img id="produit_img" class="col-9" alt="appareil photo">
 
                         <form id="myForm" action="panier.html" method="POST">
-                            <h2 class="produit__name"></h2>
+                            <h2 class="produit_name"></h2>
                             <p class="produit__description"></p>
                             <div class="row g-3">
                                 <div class="form-group col-12">
-                                    <label for="lenses">Choisissez votre lenses</label>
-                                    <select name="lenses" id="lenses" class="produit__choice" form="myForm"></select>
+                                    <label for="lenses">Lenses</label>
+                                    <p id="lenses"></p>
                                 </div>
 
 
-                                <div class="col-4 d-flex">
-                                    <label for="inputNumber" class="col-10">Indiquez la quantité souhaitée :</label>
 
-                                    <input name="inputNumber" id="inputNumber" type="number" min="0" max="50"
-                                        placeholder="0" onchange="totalPrice(value)">
-                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-lg-4 order-md-last">
+                                <ul id="cart" class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between total">
+                                        <p>Prix : <span class="produit_price"></span></p>
+                                    </li>
+                                </ul>
                             </div>
 
                             <hr class="my-4">
