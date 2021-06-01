@@ -45,7 +45,7 @@ function displayCamera(product) {
     document.getElementById('produit_img').setAttribute('src', product.imageUrl);
     document.querySelector('.produit_name').textContent = product.name;
     document.querySelector('.produit_description').textContent = product.description; 
-    document.querySelector('.produit_price').textContent = product.price + ' €';
+    document.querySelector('.produit_price').textContent = product.price / 100 + ' €';
 
 
     const lenses = product.lenses
