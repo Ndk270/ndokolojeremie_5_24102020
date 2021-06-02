@@ -55,6 +55,42 @@ function displayCamera(product) {
     
 }
 
+// Initialisation de la variable panier
+let panier;
+
+if ("monPanier" in localStorage) {
+  panier = JSON.parse(localStorage.getItem("monPanier"));
+
+
+} else {
+  panier = [];
+
+}
+console.log(localStorage);
+
+function addPanier(e) {
+  e.preventDefault();
+
+  // Création de notre objet
+  let commande = {
+      cameraId,
+      name : document.querySelector('.produit_name').textContent,
+      description : document.querySelector('.produit_description').textContent,
+      price : document.querySelector('.produit_price').textContent,
+      lenses : document.querySelector('#lenses').textContent,
+      imageUrl : document.querySelector('#produit_img').src,
+
+
+  }
+
+    panier.push(commande);
+    console.log("Article envoyer");
+
+    localStorage.setItem("monPanier", JSON.stringify(panier));
+  }
+
+submitBtn.addEventListener('click', addPanier);
+
 
 
 
