@@ -57,7 +57,7 @@ function displayCamera(product) {
 
 // Initialisation de la variable panier
 let panier;
-
+// Si localStorage contient déjà un panier alors 'panier' vaut son contenu, sinon 'panier' est vide
 if ("monPanier" in localStorage) {
   panier = JSON.parse(localStorage.getItem("monPanier"));
 
@@ -66,7 +66,7 @@ if ("monPanier" in localStorage) {
   panier = [];
 
 }
-console.log(localStorage);
+console.log(panier);
 
 function addPanier(e) {
   e.preventDefault();
@@ -82,10 +82,12 @@ function addPanier(e) {
 
 
   }
+    // On rentre ça dans le panier + reset des valeurs
 
     panier.push(commande);
     console.log("Article envoyer");
 
+    // On place le panier dans le localStorage
     localStorage.setItem("monPanier", JSON.stringify(panier));
   }
 
