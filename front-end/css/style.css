@@ -24,11 +24,15 @@ main #cc{
 .card img{
   height: 250px;  
 }
+.template img{
+ height: 100px;
+}
 
 #produit_img{
   height: 30vh;  
 
 }
+
 
 
 

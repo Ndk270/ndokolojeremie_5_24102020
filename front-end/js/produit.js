@@ -55,6 +55,7 @@ function displayCamera(product) {
     
 }
 
+
 // Initialisation de la variable panier
 let panier;
 // Si localStorage contient déjà un panier alors 'panier' vaut son contenu, sinon 'panier' est vide
@@ -80,12 +81,13 @@ function addPanier(e) {
       lenses : document.querySelector('#lenses').textContent,
       imageUrl : document.querySelector('#produit_img').src,
 
-
   }
+
     // On rentre ça dans le panier + reset des valeurs
 
     panier.push(commande);
     console.log("Article envoyer");
+
 
     // On place le panier dans le localStorage
     localStorage.setItem("monPanier", JSON.stringify(panier));
