@@ -1,18 +1,20 @@
 let panier;
 let test = document.querySelector('.test');
 let prixTotalCalcul = [];
-
+let products = [];
+let prixTotal;
 
 
 if ("monPanier" in localStorage) {
   panier = JSON.parse(localStorage.getItem("monPanier"));
 
+  console.log(panier);
 
 } else {
   panier = [];
 
 }
-console.log(panier);
+//console.log(panier);
 
 if ("monPanier" in localStorage != 0) {
   console.log("je suis remplie");
@@ -26,6 +28,7 @@ if ("monPanier" in localStorage != 0) {
   document.querySelector(".totaux").innerHTML +=  ` <span >Total: (EUR)</span> `
 
 }
+/////////////////////////////////////////////////////////////////////
 
 function template() {
   let template = document.createElement('div');
@@ -47,7 +50,7 @@ function template() {
             <p>Prix : <span class="articlePrice">${price}</span></p>
         </div>
         <div>
-            <button class="btn">
+            <button class="btn sup">
                 <i class="far fa-trash-alt"></i>
             </button>
         </div>
@@ -61,9 +64,10 @@ template.innerHTML += article;
     test.appendChild(template);
 
 }
+/////////////////////////////////////////////////////////////////////
 
 function deleteBtn() {
-  let deleteBtns = document.querySelectorAll('.btn');
+  let deleteBtns = document.querySelectorAll('.sup');
 for (let i = 0; i < deleteBtns.length; i++) {
         deleteBtns[i].addEventListener('click', () => {
             panier.splice(i, 1);
@@ -81,9 +85,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
 }
 
 
-
-
-
+/////////////////////////////////////////////////////////////////////
 
 function displayPrice() {
   for (let i = 0; i < panier.length; i++) {
@@ -98,7 +100,7 @@ function displayPrice() {
       
     }
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      const prixTotal = prixTotalCalcul.reduce(reducer, 0);
+       prixTotal = prixTotalCalcul.reduce(reducer, 0);
      console.log(prixTotal);
 
      document.querySelector(".totaux").innerHTML +=  
@@ -108,5 +110,92 @@ function displayPrice() {
 
      `
 }
+
+
+/////////////////////////////////////////////////////////////////////
+
+const btnEnvoyer = document.querySelector("#btnForm");
+// console.log(btnEnvoyer);
+
+btnEnvoyer.addEventListener("click", () =>{
+  panier = JSON.parse(localStorage.getItem("monPanier"));
+  console.log(panier);
+
+    const aEnvoyer = {
+    contact: {} ,
+    products: [],
+    // panier
+  };
+  
+  for (value of panier) {
+    aEnvoyer.products.push(panier)
+    products.push(value.cameraId)  
+    
+
+ 
+  };
+  console.log(aEnvoyer.products);
+  console.log(products);
+
+
+  //  récupération valeur du formulaire
+contact = {
+    firstName : document.querySelector("#firstName").value ,
+    lastName : document.querySelector("#lastName").value ,
+    city : document.querySelector("#city").value ,
+    address : document.querySelector("#address").value ,
+    email : document.querySelector("#email").value,
+
+  };
+  console.log(contact);
+  collectOrder(contact, products);
+
+
+  // Effaçons le panier vu que la commande est passée
+  localStorage.removeItem('monPanier');
+  // Ouverture de la page de confirmation
+  location.replace("confirmation.html")
+
+});
+
+
+async function getOrder(contact, products) {
+  let res = await fetch('http://localhost:3000/api/cameras/order', {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contact, products })
+  })
+      return res.json()
+}
+
+async function collectOrder(contact, products) {
+  try {
+      const order = await getOrder(contact, products)
+      console.log(order) //affiche la réponse de la requete 
+
+      //Récuperation de l'orderId
+      const orderId = order.orderId
+      console.log(orderId)
+      
+      localStorage.setItem("orderId", orderId)
+      localStorage.setItem("monPanier", prixTotal)
+
+
+
+      //Récupération du prix total
+  } catch (error) {
+      console.log(error)
+  }
+
+
+
+}
+
+
+
+
+
 
 

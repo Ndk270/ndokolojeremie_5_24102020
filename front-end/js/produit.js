@@ -102,3 +102,5 @@ submitBtn.addEventListener('click', addPanier);
 
 
 
+
+
