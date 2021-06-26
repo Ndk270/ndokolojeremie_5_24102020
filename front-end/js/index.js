@@ -1,6 +1,5 @@
-main()
 
-async function main() {
+
 // Requête GET pour Récupérer les Données 
 fetch("http://localhost:3000/api/cameras")
 
@@ -40,4 +39,4 @@ fetch("http://localhost:3000/api/cameras")
     .catch((err) => {                                  
         console.log(err + " " + "Erreur"); // <-- Affiche "Error" si il y a un Problème 
     })
-}
+

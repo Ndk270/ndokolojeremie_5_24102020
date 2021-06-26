@@ -58,6 +58,8 @@ function template() {
 
 template.innerHTML += article;
 
+
+
   }
   
     // Insertion au HTML + appel fonction prix total
@@ -117,6 +119,9 @@ function displayPrice() {
 const btnEnvoyer = document.querySelector("#btnForm");
 // console.log(btnEnvoyer);
 
+
+
+
 btnEnvoyer.addEventListener("click", () =>{
   panier = JSON.parse(localStorage.getItem("monPanier"));
   console.log(panier);
@@ -148,50 +153,34 @@ contact = {
 
   };
   console.log(contact);
-  collectOrder(contact, products);
+ // collectOrder(contact, products);
 
+    fetch('http://localhost:3000/api/cameras/order', {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ contact, products })
+})
+  .then(response => response.json())
+  .then(function(order) {
+    
+    localStorage.setItem("orderId", order.orderId)
+    localStorage.setItem("monPanier", prixTotal)
+  })
 
   // Effaçons le panier vu que la commande est passée
   localStorage.removeItem('monPanier');
   // Ouverture de la page de confirmation
   location.replace("confirmation.html")
 
+  
+
 });
 
 
-async function getOrder(contact, products) {
-  let res = await fetch('http://localhost:3000/api/cameras/order', {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ contact, products })
-  })
-      return res.json()
-}
-
-async function collectOrder(contact, products) {
-  try {
-      const order = await getOrder(contact, products)
-      console.log(order) //affiche la réponse de la requete 
-
-      //Récuperation de l'orderId
-      const orderId = order.orderId
-      console.log(orderId)
-      
-      localStorage.setItem("orderId", orderId)
-      localStorage.setItem("monPanier", prixTotal)
 
 
-
-      //Récupération du prix total
-  } catch (error) {
-      console.log(error)
-  }
-
-
-
-}
 
 
 
